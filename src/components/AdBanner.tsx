@@ -20,7 +20,7 @@ export const AdBanner: React.FC<AdBannerProps> = ({ placement }) => {
   const isHorizontal = placement === 'horizontal';
   const containerClasses = isHorizontal
     ? "w-full max-w-[970px] min-h-[90px]"
-    : "w-[160px] lg:w-[200px] xl:w-[250px] min-h-[600px]";
+    : "w-[120px] lg:w-[160px] xl:w-[200px] min-h-[450px]";
 
   return (
     <div className={`flex justify-center w-full h-full`}>
@@ -41,7 +41,7 @@ export const AdBanner: React.FC<AdBannerProps> = ({ placement }) => {
         {/* Actual Google Ad Component */}
         <ins
           className="adsbygoogle relative z-10 block"
-          style={{ display: 'block', width: '100%', minHeight: isHorizontal ? '90px' : '600px' }}
+          style={{ display: 'block', width: '100%', minHeight: isHorizontal ? '90px' : '450px' }}
           data-ad-client="ca-pub-XXXXXXXXXXXXXXXX" // TODO: Replace with real client ID
           data-ad-slot="XXXXXXXXXX"               // TODO: Replace with real slot ID
           data-ad-format={isHorizontal ? 'horizontal' : 'vertical'}
