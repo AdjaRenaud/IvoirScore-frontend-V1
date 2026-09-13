@@ -13,6 +13,7 @@ import { MatchDetailModal } from './components/MatchDetailModal';
 import { NotificationsDrawer } from './components/NotificationsDrawer';
 import { SearchScreen } from './components/SearchScreen';
 import { UserConfigModal } from './components/UserConfigModal';
+import { AdBanner } from './components/AdBanner';
 import { playScoreChime, playClickBeep } from './utils/audio';
 import { AdminApp } from './admin/AdminApp';
 
@@ -481,6 +482,9 @@ export default function App() {
         soundEnabled={soundEnabled}
         onToggleSound={handleToggleSound}
       />
+
+      {/* GLOBAL AD BANNER */}
+      <AdBanner />
 
       {/* FOOTER */}
       <footer className="mt-12 sm:mt-20 border-t border-white/5 py-6 sm:py-8 text-center text-xs text-slate-500 max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-3 sm:gap-4">
