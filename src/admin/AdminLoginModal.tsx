@@ -9,8 +9,8 @@ interface AdminLoginModalProps {
 
 export const AdminLoginModal: React.FC<AdminLoginModalProps> = ({ onLoginSuccess }) => {
   const { isLight } = useTheme();
-  const [username, setUsername] = useState('admin');
-  const [password, setPassword] = useState('1234567');
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
@@ -34,7 +34,7 @@ export const AdminLoginModal: React.FC<AdminLoginModalProps> = ({ onLoginSuccess
           role: 'SUPER_ADMIN'
         });
       } else {
-        setError("Identifiants incorrects. Identifiant par défaut : 'admin' | Mot de passe : '1234567'");
+        setError("Identifiants incorrects.");
       }
     }, 450);
   };
@@ -73,18 +73,6 @@ export const AdminLoginModal: React.FC<AdminLoginModalProps> = ({ onLoginSuccess
             ? 'bg-white/95 border-slate-200 shadow-slate-300/50'
             : 'bg-slate-900/90 border-white/10 shadow-black/80'
         }`}>
-          {/* Postgres connector status hint */}
-          <div className={`mb-6 p-3 rounded-xl border flex items-start gap-2.5 text-xs ${
-            isLight
-              ? 'bg-orange-50/80 border-orange-200 text-orange-900'
-              : 'bg-orange-500/10 border-orange-500/20 text-orange-200'
-          }`}>
-            <Database className="w-4 h-4 text-orange-500 shrink-0 mt-0.5" />
-            <div className="leading-snug">
-              <span className="font-bold">PostgreSQL Ready :</span> Authentification locale par défaut. Vos identifiants configurés sont pré-remplis ci-dessous.
-            </div>
-          </div>
-
           <form onSubmit={handleSubmit} className="space-y-4">
             {/* Username field */}
             <div>
@@ -129,9 +117,6 @@ export const AdminLoginModal: React.FC<AdminLoginModalProps> = ({ onLoginSuccess
                 >
                   Mot de passe
                 </label>
-                <span className={`text-[10px] font-mono ${isLight ? 'text-slate-500' : 'text-slate-400'}`}>
-                  Défaut: 1234567
-                </span>
               </div>
               <div className="relative">
                 <div className={`absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none ${
@@ -199,17 +184,6 @@ export const AdminLoginModal: React.FC<AdminLoginModalProps> = ({ onLoginSuccess
               <CheckCircle2 className="w-3.5 h-3.5 text-emerald-500" />
               Accès réservé officiel
             </span>
-            <button
-              type="button"
-              onClick={() => {
-                setUsername('admin');
-                setPassword('1234567');
-                setError(null);
-              }}
-              className="text-orange-500 hover:underline font-bold"
-            >
-              Rétablir 'admin' / '1234567'
-            </button>
           </div>
         </div>
 
