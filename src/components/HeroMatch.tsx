@@ -81,7 +81,7 @@ export const HeroMatch: React.FC<HeroMatchProps> = ({
         {/* Home Team */}
         <div className="flex flex-col items-center group/home">
           <div className="relative group-hover:scale-105 transition-transform duration-300 ease-out">
-            <div className={`w-14 h-14 sm:w-20 sm:h-20 md:w-24 md:h-24 rounded-none bg-gradient-to-br ${match.homeTeam.badgeBg} flex items-center justify-center overflow-hidden shadow-md mb-2 sm:mb-3 group-hover/home:shadow-orange-500/20 transition-all duration-300`}>
+            <div className={`w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 rounded-full bg-gradient-to-br ${match.homeTeam.badgeBg} flex items-center justify-center overflow-hidden shadow-lg mb-2 sm:mb-3 group-hover/home:shadow-orange-500/20 transition-all duration-300`}>
               <ClubLogo code={match.homeTeam.code} name={match.homeTeam.name} />
             </div>
           </div>
@@ -164,7 +164,7 @@ export const HeroMatch: React.FC<HeroMatchProps> = ({
         {/* Away Team */}
         <div className="flex flex-col items-center group/away">
           <div className="relative group-hover:scale-105 transition-transform duration-300 ease-out">
-            <div className={`w-14 h-14 sm:w-20 sm:h-20 md:w-24 md:h-24 rounded-none bg-gradient-to-br ${match.awayTeam.badgeBg} flex items-center justify-center overflow-hidden shadow-md mb-2 sm:mb-3 group-hover/away:shadow-orange-500/20 transition-all duration-300`}>
+            <div className={`w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 rounded-full bg-gradient-to-br ${match.awayTeam.badgeBg} flex items-center justify-center overflow-hidden shadow-lg mb-2 sm:mb-3 group-hover/away:shadow-orange-500/20 transition-all duration-300`}>
               <ClubLogo code={match.awayTeam.code} name={match.awayTeam.name} />
             </div>
           </div>

@@ -13,6 +13,7 @@ import { MatchDetailModal } from './components/MatchDetailModal';
 import { NotificationsDrawer } from './components/NotificationsDrawer';
 import { SearchScreen } from './components/SearchScreen';
 import { UserConfigModal } from './components/UserConfigModal';
+import { AdBanner } from './components/AdBanner';
 import { playScoreChime, playClickBeep } from './utils/audio';
 import { AdminApp } from './admin/AdminApp';
 
@@ -341,9 +342,22 @@ export default function App() {
       />
 
       {/* MAIN BODY CONTAINER */}
-      <main className="pt-14 sm:pt-16 px-2.5 sm:px-4 max-w-7xl mx-auto space-y-3.5 sm:space-y-4">
-        {/* CENTERED LIQUID GLASS NAVIGATION BAR (Hidden on detail and recherche) */}
-        {currentScreen !== 'detail' && currentScreen !== 'recherche' && (
+      <div className="flex justify-center w-full max-w-[1800px] mx-auto xl:px-4 gap-4 2xl:gap-8 pt-14 sm:pt-16">
+
+        {/* LEFT AD SIDEBAR (Desktop only) */}
+        <aside className="hidden xl:block shrink-0 sticky top-20 h-fit">
+          <AdBanner placement="vertical" />
+        </aside>
+
+        <main className="flex-1 min-w-0 max-w-7xl px-2.5 sm:px-4 space-y-3.5 sm:space-y-4">
+
+          {/* TOP AD BANNER (Mobile/Tablet only) */}
+          <div className="xl:hidden w-full mb-4">
+            <AdBanner placement="horizontal" />
+          </div>
+
+          {/* CENTERED LIQUID GLASS NAVIGATION BAR (Hidden on detail and recherche) */}
+          {currentScreen !== 'detail' && currentScreen !== 'recherche' && (
           <LiquidGlassNav
             currentScreen={currentScreen}
             onSelectScreen={handleSelectScreen}
@@ -471,7 +485,14 @@ export default function App() {
             />
           </div>
         )}
-      </main>
+        </main>
+
+        {/* RIGHT AD SIDEBAR (Desktop only) */}
+        <aside className="hidden xl:block shrink-0 sticky top-20 h-fit">
+          <AdBanner placement="vertical" />
+        </aside>
+
+      </div>
 
       {/* USER & SETTINGS MODAL */}
       <UserConfigModal
@@ -481,6 +502,11 @@ export default function App() {
         soundEnabled={soundEnabled}
         onToggleSound={handleToggleSound}
       />
+
+      {/* BOTTOM AD BANNER (Mobile/Tablet only) */}
+      <div className="xl:hidden w-full mt-8 mb-4 px-4 flex justify-center">
+        <AdBanner placement="horizontal" />
+      </div>
 
       {/* FOOTER */}
       <footer className="mt-12 sm:mt-20 border-t border-white/5 py-6 sm:py-8 text-center text-xs text-slate-500 max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-3 sm:gap-4">
