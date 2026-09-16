@@ -16,6 +16,7 @@ import { UserConfigModal } from './components/UserConfigModal';
 import { AdBanner } from './components/AdBanner';
 import { playScoreChime, playClickBeep } from './utils/audio';
 import { AdminApp } from './admin/AdminApp';
+import { ScoutApp } from './scout/ScoutApp';
 
 interface NotificationItem {
   id: string;
@@ -36,8 +37,18 @@ const isCurrentRouteAdmin = (): boolean => {
   return path === '/admin' || path.startsWith('/admin/') || hash === '#admin' || search.includes('page=admin');
 };
 
+// Helper to determine if current URL targets the isolated Scout module
+const isCurrentRouteScout = (): boolean => {
+  if (typeof window === 'undefined') return false;
+  const path = window.location.pathname.toLowerCase();
+  const hash = window.location.hash.toLowerCase();
+  const search = window.location.search.toLowerCase();
+  return path === '/scout' || path.startsWith('/scout/') || hash === '#scout' || search.includes('page=scout');
+};
+
 export default function App() {
   const [isAdminMode, setIsAdminMode] = useState<boolean>(isCurrentRouteAdmin);
+  const [isScoutMode, setIsScoutMode] = useState<boolean>(isCurrentRouteScout);
   const [currentScreen, setCurrentScreen] = useState<ScreenType>('matchs');
   const [filter, setFilter] = useState<MatchFilter>('all');
   const [currentDateIndex, setCurrentDateIndex] = useState(7); // 7 = DIM. 01/03 AUJOURD'HUI (7 jours avant, 7 jours après)
@@ -55,6 +66,7 @@ export default function App() {
   useEffect(() => {
     const handleLocationCheck = () => {
       setIsAdminMode(isCurrentRouteAdmin());
+      setIsScoutMode(isCurrentRouteScout());
     };
     window.addEventListener('popstate', handleLocationCheck);
     window.addEventListener('hashchange', handleLocationCheck);
@@ -305,6 +317,18 @@ export default function App() {
         onExitAdmin={() => {
           window.history.pushState({}, '', '/');
           setIsAdminMode(false);
+        }}
+      />
+    );
+  }
+
+  // If in Scout Mode, render the isolated Scout application
+  if (isScoutMode) {
+    return (
+      <ScoutApp
+        onExitScout={() => {
+          window.history.pushState({}, '', '/');
+          setIsScoutMode(false);
         }}
       />
     );
